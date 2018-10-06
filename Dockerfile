@@ -1,9 +1,14 @@
 FROM golang:latest
 
-COPY . /app
+EXPOSE 8000
 
-WORKDIR /app
+WORKDIR /go/src/github.com/RadicalPixels/server
 
-RUN go get ./...
+RUN set -x && wget https://dist.ipfs.io/go-ipfs/v0.4.14/go-ipfs_v0.4.14_linux-amd64.tar.gz -O /tmp/go-ipfs.tar.gz && tar xvfz /tmp/go-ipfs.tar.gz && cp go-ipfs/ipfs /usr/local/bin
 
-RUN go run main.go
+RUN ipfs init
+RUN ipfs key gen default --type=rsa --size=2048
+
+COPY . /go/src/github.com/RadicalPixels/server
+
+ENTRYPOINT make start

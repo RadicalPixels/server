@@ -12,6 +12,7 @@ import (
 // Run ...
 func Run() {
 	http.HandleFunc("/upload", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("received request")
 		file, _, err := r.FormFile("file")
 		if err != nil {
 			handleError(w, err)
@@ -47,7 +48,7 @@ func Run() {
 
 	port := 8000
 	log.Printf("listening on port %d", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("0.0.0.0:%d", port), nil))
 }
 
 func handleError(w http.ResponseWriter, err error) {

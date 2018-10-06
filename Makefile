@@ -11,7 +11,7 @@ start:
 
 .PHONY: start/docker
 start/docker:
-	@docker run -t radpix:latest
+	@docker run -p 8000:8000 -t radpix:latest
 
 .PHONY: clean
 clean:
