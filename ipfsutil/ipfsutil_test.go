@@ -7,6 +7,27 @@ import (
 	"testing"
 )
 
+func TestAdd(t *testing.T) {
+	file, err := ioutil.TempFile("/tmp", "")
+	if err != nil {
+		t.Error(err)
+	}
+	defer os.Remove(file.Name())
+	if _, err := file.Write([]byte("hello world")); err != nil {
+		t.Error(err)
+	}
+
+	hash, err := Add(file)
+	if hash == "" {
+		t.Error("hash is empty")
+	}
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Log(hash)
+}
+
 func TestAddBytes(t *testing.T) {
 	hash, err := AddBytes([]byte("hello world"))
 	if hash == "" {

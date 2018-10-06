@@ -1,9 +1,17 @@
 all:
 	@echo "no default"
 
-.PHONY: run
-run:
+.PHONY: build/docker
+build/docker:
+	@docker build -t radpix:latest .
+
+.PHONY: start
+start:
 	@go run main.go
+
+.PHONY: start/docker
+start/docker:
+	@docker run -t radpix:latest
 
 .PHONY: clean
 clean:
