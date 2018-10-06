@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	ipfsutil "github.com/RadicalPixels/ipfsutil"
+	ipfsutil "github.com/RadicalPixels/server/ipfsutil"
 )
 
 // Run ...
