@@ -44,4 +44,4 @@ clean:
 
 .PHONY: kill
 kill:
-	@docker rm -f $(docker ps -aq)
+	@docker rm -f $$(docker ps -aq)
