@@ -45,12 +45,13 @@ func NewClient(cfg *Config) *Client {
 
 // LogBuyPixel ...
 type LogBuyPixel struct {
-	ID     [32]byte
-	Seller common.Address
-	Buyer  common.Address
-	X      *big.Int
-	Y      *big.Int
-	Price  *big.Int
+	ID           [32]byte
+	Seller       common.Address
+	Buyer        common.Address
+	X            *big.Int
+	Y            *big.Int
+	Price        *big.Int
+	ContractData [32]byte
 }
 
 // LogSetPixelPrice ...
@@ -186,5 +187,5 @@ func LogTopicHash(fnsig string) common.Hash {
 }
 
 func init() {
-	LogBuyPixelTopic = LogTopicHash("BuyPixel(bytes32,address,address,uint256,uint256,uint256)")
+	LogBuyPixelTopic = LogTopicHash("BuyPixel(bytes32,address,address,uint256,uint256,uint256,bytes32)")
 }

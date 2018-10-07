@@ -16,7 +16,7 @@ import (
 )
 
 // ContractABI is the input ABI used to generate the binding from.
-const ContractABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"userBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pixelByCoordinate\",\"outputs\":[{\"name\":\"id\",\"type\":\"bytes32\"},{\"name\":\"seller\",\"type\":\"address\"},{\"name\":\"x\",\"type\":\"uint256\"},{\"name\":\"y\",\"type\":\"uint256\"},{\"name\":\"price\",\"type\":\"uint256\"},{\"name\":\"auctionId\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"InterfaceId_ERC165\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"lastPaidTaxes\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"auctionById\",\"outputs\":[{\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"name\":\"blockId\",\"type\":\"bytes32\"},{\"name\":\"x\",\"type\":\"uint256\"},{\"name\":\"y\",\"type\":\"uint256\"},{\"name\":\"currentPrice\",\"type\":\"uint256\"},{\"name\":\"currentLeader\",\"type\":\"address\"},{\"name\":\"endTime\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"tokenOfOwnerByIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"userBalanceAtLastPaid\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"valueHeld\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"exists\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"tokenByIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"xMax\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"addFunds\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"taxPercentage\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"taxCollector\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"tokenURI\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"transferTaxes\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"userHasPositveBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"yMax\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_xMax\",\"type\":\"uint256\"},{\"name\":\"_yMax\",\"type\":\"uint256\"},{\"name\":\"_taxPercentage\",\"type\":\"uint256\"},{\"name\":\"_taxCollector\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"id\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"seller\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"buyer\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"BuyPixel\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"id\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"seller\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"SetPixelPrice\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"initiator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"startTime\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"BeginDutchAuction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"bidder\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amountBet\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"timeBet\",\"type\":\"uint256\"}],\"name\":\"UpdateAuctionBid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"claimer\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"}],\"name\":\"EndDutchAuction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_approved\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_operator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"buyUninitializedPixelBlock\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256[]\"},{\"name\":\"_y\",\"type\":\"uint256[]\"},{\"name\":\"_price\",\"type\":\"uint256[]\"}],\"name\":\"buyUninitializedPixelBlocks\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"buyPixelBlock\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256[]\"},{\"name\":\"_y\",\"type\":\"uint256[]\"},{\"name\":\"_price\",\"type\":\"uint256[]\"}],\"name\":\"buyPixelBlocks\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"setPixelBlockPrice\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256[]\"},{\"name\":\"_y\",\"type\":\"uint256[]\"},{\"name\":\"_price\",\"type\":\"uint256[]\"}],\"name\":\"setPixelBlockPrices\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"}],\"name\":\"beginDutchAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_bid\",\"type\":\"uint256\"}],\"name\":\"bidInAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"}],\"name\":\"endDutchAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"}],\"name\":\"encodeTokenId\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const ContractABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"userBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"pixelByCoordinate\",\"outputs\":[{\"name\":\"id\",\"type\":\"bytes32\"},{\"name\":\"seller\",\"type\":\"address\"},{\"name\":\"x\",\"type\":\"uint256\"},{\"name\":\"y\",\"type\":\"uint256\"},{\"name\":\"price\",\"type\":\"uint256\"},{\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"name\":\"contentData\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"InterfaceId_ERC165\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256[]\"},{\"name\":\"_y\",\"type\":\"uint256[]\"},{\"name\":\"_price\",\"type\":\"uint256[]\"},{\"name\":\"_contentData\",\"type\":\"bytes32[]\"}],\"name\":\"buyUninitializedPixelBlocks\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"lastPaidTaxes\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"auctionById\",\"outputs\":[{\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"name\":\"blockId\",\"type\":\"bytes32\"},{\"name\":\"x\",\"type\":\"uint256\"},{\"name\":\"y\",\"type\":\"uint256\"},{\"name\":\"currentPrice\",\"type\":\"uint256\"},{\"name\":\"currentLeader\",\"type\":\"address\"},{\"name\":\"endTime\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"tokenOfOwnerByIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"userBalanceAtLastPaid\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256[]\"},{\"name\":\"_y\",\"type\":\"uint256[]\"},{\"name\":\"_price\",\"type\":\"uint256[]\"}],\"name\":\"setPixelBlockPrices\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"valueHeld\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"exists\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"tokenByIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256[]\"},{\"name\":\"_y\",\"type\":\"uint256[]\"},{\"name\":\"_price\",\"type\":\"uint256[]\"},{\"name\":\"_contentData\",\"type\":\"bytes32[]\"}],\"name\":\"buyPixelBlocks\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"setPixelBlockPrice\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"},{\"name\":\"_contentData\",\"type\":\"bytes32\"}],\"name\":\"buyUninitializedPixelBlock\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"xMax\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"addFunds\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"taxPercentage\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"taxCollector\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_bid\",\"type\":\"uint256\"}],\"name\":\"bidInAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"tokenURI\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_contentData\",\"type\":\"bytes32\"}],\"name\":\"changeContentData\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"},{\"name\":\"_contentData\",\"type\":\"bytes32\"}],\"name\":\"buyPixelBlock\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"transferTaxes\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"userHasPositveBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"}],\"name\":\"encodeTokenId\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"}],\"name\":\"endDutchAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"yMax\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_x\",\"type\":\"uint256\"},{\"name\":\"_y\",\"type\":\"uint256\"}],\"name\":\"beginDutchAuction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_xMax\",\"type\":\"uint256\"},{\"name\":\"_yMax\",\"type\":\"uint256\"},{\"name\":\"_taxPercentage\",\"type\":\"uint256\"},{\"name\":\"_taxCollector\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"id\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"seller\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"buyer\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"price\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"contentData\",\"type\":\"bytes32\"}],\"name\":\"BuyPixel\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"id\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"seller\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"SetPixelPrice\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"initiator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"startTime\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"BeginDutchAuction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"auctionId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"bidder\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amountBet\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"timeBet\",\"type\":\"uint256\"}],\"name\":\"UpdateAuctionBid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"claimer\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"}],\"name\":\"EndDutchAuction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"pixelId\",\"type\":\"bytes32\"},{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"x\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"y\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"newContentData\",\"type\":\"bytes32\"}],\"name\":\"UpdateContentData\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_approved\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_operator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"}]"
 
 // Contract is an auto generated Go binding around an Ethereum contract.
 type Contract struct {
@@ -452,22 +452,24 @@ func (_Contract *ContractCallerSession) OwnerOf(_tokenId *big.Int) (common.Addre
 
 // PixelByCoordinate is a free data retrieval call binding the contract method 0x0855b6d4.
 //
-// Solidity: function pixelByCoordinate( uint256,  uint256) constant returns(id bytes32, seller address, x uint256, y uint256, price uint256, auctionId bytes32)
+// Solidity: function pixelByCoordinate( uint256,  uint256) constant returns(id bytes32, seller address, x uint256, y uint256, price uint256, auctionId bytes32, contentData bytes32)
 func (_Contract *ContractCaller) PixelByCoordinate(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (struct {
-	Id        [32]byte
-	Seller    common.Address
-	X         *big.Int
-	Y         *big.Int
-	Price     *big.Int
-	AuctionId [32]byte
+	Id          [32]byte
+	Seller      common.Address
+	X           *big.Int
+	Y           *big.Int
+	Price       *big.Int
+	AuctionId   [32]byte
+	ContentData [32]byte
 }, error) {
 	ret := new(struct {
-		Id        [32]byte
-		Seller    common.Address
-		X         *big.Int
-		Y         *big.Int
-		Price     *big.Int
-		AuctionId [32]byte
+		Id          [32]byte
+		Seller      common.Address
+		X           *big.Int
+		Y           *big.Int
+		Price       *big.Int
+		AuctionId   [32]byte
+		ContentData [32]byte
 	})
 	out := ret
 	err := _Contract.contract.Call(opts, out, "pixelByCoordinate", arg0, arg1)
@@ -476,28 +478,30 @@ func (_Contract *ContractCaller) PixelByCoordinate(opts *bind.CallOpts, arg0 *bi
 
 // PixelByCoordinate is a free data retrieval call binding the contract method 0x0855b6d4.
 //
-// Solidity: function pixelByCoordinate( uint256,  uint256) constant returns(id bytes32, seller address, x uint256, y uint256, price uint256, auctionId bytes32)
+// Solidity: function pixelByCoordinate( uint256,  uint256) constant returns(id bytes32, seller address, x uint256, y uint256, price uint256, auctionId bytes32, contentData bytes32)
 func (_Contract *ContractSession) PixelByCoordinate(arg0 *big.Int, arg1 *big.Int) (struct {
-	Id        [32]byte
-	Seller    common.Address
-	X         *big.Int
-	Y         *big.Int
-	Price     *big.Int
-	AuctionId [32]byte
+	Id          [32]byte
+	Seller      common.Address
+	X           *big.Int
+	Y           *big.Int
+	Price       *big.Int
+	AuctionId   [32]byte
+	ContentData [32]byte
 }, error) {
 	return _Contract.Contract.PixelByCoordinate(&_Contract.CallOpts, arg0, arg1)
 }
 
 // PixelByCoordinate is a free data retrieval call binding the contract method 0x0855b6d4.
 //
-// Solidity: function pixelByCoordinate( uint256,  uint256) constant returns(id bytes32, seller address, x uint256, y uint256, price uint256, auctionId bytes32)
+// Solidity: function pixelByCoordinate( uint256,  uint256) constant returns(id bytes32, seller address, x uint256, y uint256, price uint256, auctionId bytes32, contentData bytes32)
 func (_Contract *ContractCallerSession) PixelByCoordinate(arg0 *big.Int, arg1 *big.Int) (struct {
-	Id        [32]byte
-	Seller    common.Address
-	X         *big.Int
-	Y         *big.Int
-	Price     *big.Int
-	AuctionId [32]byte
+	Id          [32]byte
+	Seller      common.Address
+	X           *big.Int
+	Y           *big.Int
+	Price       *big.Int
+	AuctionId   [32]byte
+	ContentData [32]byte
 }, error) {
 	return _Contract.Contract.PixelByCoordinate(&_Contract.CallOpts, arg0, arg1)
 }
@@ -950,88 +954,109 @@ func (_Contract *ContractTransactorSession) BidInAuction(_x *big.Int, _y *big.In
 	return _Contract.Contract.BidInAuction(&_Contract.TransactOpts, _x, _y, _bid)
 }
 
-// BuyPixelBlock is a paid mutator transaction binding the contract method 0xfb9c19bf.
+// BuyPixelBlock is a paid mutator transaction binding the contract method 0xd3c764f2.
 //
-// Solidity: function buyPixelBlock(_x uint256, _y uint256, _price uint256) returns()
-func (_Contract *ContractTransactor) BuyPixelBlock(opts *bind.TransactOpts, _x *big.Int, _y *big.Int, _price *big.Int) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "buyPixelBlock", _x, _y, _price)
+// Solidity: function buyPixelBlock(_x uint256, _y uint256, _price uint256, _contentData bytes32) returns()
+func (_Contract *ContractTransactor) BuyPixelBlock(opts *bind.TransactOpts, _x *big.Int, _y *big.Int, _price *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "buyPixelBlock", _x, _y, _price, _contentData)
 }
 
-// BuyPixelBlock is a paid mutator transaction binding the contract method 0xfb9c19bf.
+// BuyPixelBlock is a paid mutator transaction binding the contract method 0xd3c764f2.
 //
-// Solidity: function buyPixelBlock(_x uint256, _y uint256, _price uint256) returns()
-func (_Contract *ContractSession) BuyPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyPixelBlock(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyPixelBlock(_x uint256, _y uint256, _price uint256, _contentData bytes32) returns()
+func (_Contract *ContractSession) BuyPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyPixelBlock(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyPixelBlock is a paid mutator transaction binding the contract method 0xfb9c19bf.
+// BuyPixelBlock is a paid mutator transaction binding the contract method 0xd3c764f2.
 //
-// Solidity: function buyPixelBlock(_x uint256, _y uint256, _price uint256) returns()
-func (_Contract *ContractTransactorSession) BuyPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyPixelBlock(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyPixelBlock(_x uint256, _y uint256, _price uint256, _contentData bytes32) returns()
+func (_Contract *ContractTransactorSession) BuyPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyPixelBlock(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyPixelBlocks is a paid mutator transaction binding the contract method 0x2e0ca840.
+// BuyPixelBlocks is a paid mutator transaction binding the contract method 0x597df768.
 //
-// Solidity: function buyPixelBlocks(_x uint256[], _y uint256[], _price uint256[]) returns()
-func (_Contract *ContractTransactor) BuyPixelBlocks(opts *bind.TransactOpts, _x []*big.Int, _y []*big.Int, _price []*big.Int) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "buyPixelBlocks", _x, _y, _price)
+// Solidity: function buyPixelBlocks(_x uint256[], _y uint256[], _price uint256[], _contentData bytes32[]) returns()
+func (_Contract *ContractTransactor) BuyPixelBlocks(opts *bind.TransactOpts, _x []*big.Int, _y []*big.Int, _price []*big.Int, _contentData [][32]byte) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "buyPixelBlocks", _x, _y, _price, _contentData)
 }
 
-// BuyPixelBlocks is a paid mutator transaction binding the contract method 0x2e0ca840.
+// BuyPixelBlocks is a paid mutator transaction binding the contract method 0x597df768.
 //
-// Solidity: function buyPixelBlocks(_x uint256[], _y uint256[], _price uint256[]) returns()
-func (_Contract *ContractSession) BuyPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyPixelBlocks(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyPixelBlocks(_x uint256[], _y uint256[], _price uint256[], _contentData bytes32[]) returns()
+func (_Contract *ContractSession) BuyPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int, _contentData [][32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyPixelBlocks(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyPixelBlocks is a paid mutator transaction binding the contract method 0x2e0ca840.
+// BuyPixelBlocks is a paid mutator transaction binding the contract method 0x597df768.
 //
-// Solidity: function buyPixelBlocks(_x uint256[], _y uint256[], _price uint256[]) returns()
-func (_Contract *ContractTransactorSession) BuyPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyPixelBlocks(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyPixelBlocks(_x uint256[], _y uint256[], _price uint256[], _contentData bytes32[]) returns()
+func (_Contract *ContractTransactorSession) BuyPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int, _contentData [][32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyPixelBlocks(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyUninitializedPixelBlock is a paid mutator transaction binding the contract method 0xe3696aa5.
+// BuyUninitializedPixelBlock is a paid mutator transaction binding the contract method 0x8ecc107f.
 //
-// Solidity: function buyUninitializedPixelBlock(_x uint256, _y uint256, _price uint256) returns()
-func (_Contract *ContractTransactor) BuyUninitializedPixelBlock(opts *bind.TransactOpts, _x *big.Int, _y *big.Int, _price *big.Int) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "buyUninitializedPixelBlock", _x, _y, _price)
+// Solidity: function buyUninitializedPixelBlock(_x uint256, _y uint256, _price uint256, _contentData bytes32) returns()
+func (_Contract *ContractTransactor) BuyUninitializedPixelBlock(opts *bind.TransactOpts, _x *big.Int, _y *big.Int, _price *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "buyUninitializedPixelBlock", _x, _y, _price, _contentData)
 }
 
-// BuyUninitializedPixelBlock is a paid mutator transaction binding the contract method 0xe3696aa5.
+// BuyUninitializedPixelBlock is a paid mutator transaction binding the contract method 0x8ecc107f.
 //
-// Solidity: function buyUninitializedPixelBlock(_x uint256, _y uint256, _price uint256) returns()
-func (_Contract *ContractSession) BuyUninitializedPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyUninitializedPixelBlock(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyUninitializedPixelBlock(_x uint256, _y uint256, _price uint256, _contentData bytes32) returns()
+func (_Contract *ContractSession) BuyUninitializedPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyUninitializedPixelBlock(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyUninitializedPixelBlock is a paid mutator transaction binding the contract method 0xe3696aa5.
+// BuyUninitializedPixelBlock is a paid mutator transaction binding the contract method 0x8ecc107f.
 //
-// Solidity: function buyUninitializedPixelBlock(_x uint256, _y uint256, _price uint256) returns()
-func (_Contract *ContractTransactorSession) BuyUninitializedPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyUninitializedPixelBlock(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyUninitializedPixelBlock(_x uint256, _y uint256, _price uint256, _contentData bytes32) returns()
+func (_Contract *ContractTransactorSession) BuyUninitializedPixelBlock(_x *big.Int, _y *big.Int, _price *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyUninitializedPixelBlock(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyUninitializedPixelBlocks is a paid mutator transaction binding the contract method 0xa70753b3.
+// BuyUninitializedPixelBlocks is a paid mutator transaction binding the contract method 0x1c39c375.
 //
-// Solidity: function buyUninitializedPixelBlocks(_x uint256[], _y uint256[], _price uint256[]) returns()
-func (_Contract *ContractTransactor) BuyUninitializedPixelBlocks(opts *bind.TransactOpts, _x []*big.Int, _y []*big.Int, _price []*big.Int) (*types.Transaction, error) {
-	return _Contract.contract.Transact(opts, "buyUninitializedPixelBlocks", _x, _y, _price)
+// Solidity: function buyUninitializedPixelBlocks(_x uint256[], _y uint256[], _price uint256[], _contentData bytes32[]) returns()
+func (_Contract *ContractTransactor) BuyUninitializedPixelBlocks(opts *bind.TransactOpts, _x []*big.Int, _y []*big.Int, _price []*big.Int, _contentData [][32]byte) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "buyUninitializedPixelBlocks", _x, _y, _price, _contentData)
 }
 
-// BuyUninitializedPixelBlocks is a paid mutator transaction binding the contract method 0xa70753b3.
+// BuyUninitializedPixelBlocks is a paid mutator transaction binding the contract method 0x1c39c375.
 //
-// Solidity: function buyUninitializedPixelBlocks(_x uint256[], _y uint256[], _price uint256[]) returns()
-func (_Contract *ContractSession) BuyUninitializedPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyUninitializedPixelBlocks(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyUninitializedPixelBlocks(_x uint256[], _y uint256[], _price uint256[], _contentData bytes32[]) returns()
+func (_Contract *ContractSession) BuyUninitializedPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int, _contentData [][32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyUninitializedPixelBlocks(&_Contract.TransactOpts, _x, _y, _price, _contentData)
 }
 
-// BuyUninitializedPixelBlocks is a paid mutator transaction binding the contract method 0xa70753b3.
+// BuyUninitializedPixelBlocks is a paid mutator transaction binding the contract method 0x1c39c375.
 //
-// Solidity: function buyUninitializedPixelBlocks(_x uint256[], _y uint256[], _price uint256[]) returns()
-func (_Contract *ContractTransactorSession) BuyUninitializedPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int) (*types.Transaction, error) {
-	return _Contract.Contract.BuyUninitializedPixelBlocks(&_Contract.TransactOpts, _x, _y, _price)
+// Solidity: function buyUninitializedPixelBlocks(_x uint256[], _y uint256[], _price uint256[], _contentData bytes32[]) returns()
+func (_Contract *ContractTransactorSession) BuyUninitializedPixelBlocks(_x []*big.Int, _y []*big.Int, _price []*big.Int, _contentData [][32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.BuyUninitializedPixelBlocks(&_Contract.TransactOpts, _x, _y, _price, _contentData)
+}
+
+// ChangeContentData is a paid mutator transaction binding the contract method 0xcb2410b9.
+//
+// Solidity: function changeContentData(_x uint256, _y uint256, _contentData bytes32) returns()
+func (_Contract *ContractTransactor) ChangeContentData(opts *bind.TransactOpts, _x *big.Int, _y *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.contract.Transact(opts, "changeContentData", _x, _y, _contentData)
+}
+
+// ChangeContentData is a paid mutator transaction binding the contract method 0xcb2410b9.
+//
+// Solidity: function changeContentData(_x uint256, _y uint256, _contentData bytes32) returns()
+func (_Contract *ContractSession) ChangeContentData(_x *big.Int, _y *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.ChangeContentData(&_Contract.TransactOpts, _x, _y, _contentData)
+}
+
+// ChangeContentData is a paid mutator transaction binding the contract method 0xcb2410b9.
+//
+// Solidity: function changeContentData(_x uint256, _y uint256, _contentData bytes32) returns()
+func (_Contract *ContractTransactorSession) ChangeContentData(_x *big.Int, _y *big.Int, _contentData [32]byte) (*types.Transaction, error) {
+	return _Contract.Contract.ChangeContentData(&_Contract.TransactOpts, _x, _y, _contentData)
 }
 
 // EndDutchAuction is a paid mutator transaction binding the contract method 0xf2556289.
@@ -1718,18 +1743,19 @@ func (it *ContractBuyPixelIterator) Close() error {
 
 // ContractBuyPixel represents a BuyPixel event raised by the Contract contract.
 type ContractBuyPixel struct {
-	Id     [32]byte
-	Seller common.Address
-	Buyer  common.Address
-	X      *big.Int
-	Y      *big.Int
-	Price  *big.Int
-	Raw    types.Log // Blockchain specific contextual infos
+	Id          [32]byte
+	Seller      common.Address
+	Buyer       common.Address
+	X           *big.Int
+	Y           *big.Int
+	Price       *big.Int
+	ContentData [32]byte
+	Raw         types.Log // Blockchain specific contextual infos
 }
 
-// FilterBuyPixel is a free log retrieval operation binding the contract event 0x6e19798a5611264094483d6addf1831a553450c5f3244d22683e503558e6a949.
+// FilterBuyPixel is a free log retrieval operation binding the contract event 0xc7780c9b656c370fa4af95a11dc3b7881d4deb58428e6b02ae92644100b89cd6.
 //
-// Solidity: e BuyPixel(id indexed bytes32, seller indexed address, buyer indexed address, x uint256, y uint256, price uint256)
+// Solidity: e BuyPixel(id indexed bytes32, seller indexed address, buyer indexed address, x uint256, y uint256, price uint256, contentData bytes32)
 func (_Contract *ContractFilterer) FilterBuyPixel(opts *bind.FilterOpts, id [][32]byte, seller []common.Address, buyer []common.Address) (*ContractBuyPixelIterator, error) {
 
 	var idRule []interface{}
@@ -1752,9 +1778,9 @@ func (_Contract *ContractFilterer) FilterBuyPixel(opts *bind.FilterOpts, id [][3
 	return &ContractBuyPixelIterator{contract: _Contract.contract, event: "BuyPixel", logs: logs, sub: sub}, nil
 }
 
-// WatchBuyPixel is a free log subscription operation binding the contract event 0x6e19798a5611264094483d6addf1831a553450c5f3244d22683e503558e6a949.
+// WatchBuyPixel is a free log subscription operation binding the contract event 0xc7780c9b656c370fa4af95a11dc3b7881d4deb58428e6b02ae92644100b89cd6.
 //
-// Solidity: e BuyPixel(id indexed bytes32, seller indexed address, buyer indexed address, x uint256, y uint256, price uint256)
+// Solidity: e BuyPixel(id indexed bytes32, seller indexed address, buyer indexed address, x uint256, y uint256, price uint256, contentData bytes32)
 func (_Contract *ContractFilterer) WatchBuyPixel(opts *bind.WatchOpts, sink chan<- *ContractBuyPixel, id [][32]byte, seller []common.Address, buyer []common.Address) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -2381,6 +2407,150 @@ func (_Contract *ContractFilterer) WatchUpdateAuctionBid(opts *bind.WatchOpts, s
 				// New log arrived, parse the event and forward to the user
 				event := new(ContractUpdateAuctionBid)
 				if err := _Contract.contract.UnpackLog(event, "UpdateAuctionBid", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ContractUpdateContentDataIterator is returned from FilterUpdateContentData and is used to iterate over the raw logs and unpacked data for UpdateContentData events raised by the Contract contract.
+type ContractUpdateContentDataIterator struct {
+	Event *ContractUpdateContentData // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *ContractUpdateContentDataIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(ContractUpdateContentData)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(ContractUpdateContentData)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *ContractUpdateContentDataIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *ContractUpdateContentDataIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// ContractUpdateContentData represents a UpdateContentData event raised by the Contract contract.
+type ContractUpdateContentData struct {
+	PixelId        [32]byte
+	Owner          common.Address
+	X              *big.Int
+	Y              *big.Int
+	NewContentData [32]byte
+	Raw            types.Log // Blockchain specific contextual infos
+}
+
+// FilterUpdateContentData is a free log retrieval operation binding the contract event 0xa8287b5ca05c2bee0ad3916a06b5df440691dbd9e7110b9eaf42467c8a8e524e.
+//
+// Solidity: e UpdateContentData(pixelId indexed bytes32, owner indexed address, x uint256, y uint256, newContentData bytes32)
+func (_Contract *ContractFilterer) FilterUpdateContentData(opts *bind.FilterOpts, pixelId [][32]byte, owner []common.Address) (*ContractUpdateContentDataIterator, error) {
+
+	var pixelIdRule []interface{}
+	for _, pixelIdItem := range pixelId {
+		pixelIdRule = append(pixelIdRule, pixelIdItem)
+	}
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+
+	logs, sub, err := _Contract.contract.FilterLogs(opts, "UpdateContentData", pixelIdRule, ownerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &ContractUpdateContentDataIterator{contract: _Contract.contract, event: "UpdateContentData", logs: logs, sub: sub}, nil
+}
+
+// WatchUpdateContentData is a free log subscription operation binding the contract event 0xa8287b5ca05c2bee0ad3916a06b5df440691dbd9e7110b9eaf42467c8a8e524e.
+//
+// Solidity: e UpdateContentData(pixelId indexed bytes32, owner indexed address, x uint256, y uint256, newContentData bytes32)
+func (_Contract *ContractFilterer) WatchUpdateContentData(opts *bind.WatchOpts, sink chan<- *ContractUpdateContentData, pixelId [][32]byte, owner []common.Address) (event.Subscription, error) {
+
+	var pixelIdRule []interface{}
+	for _, pixelIdItem := range pixelId {
+		pixelIdRule = append(pixelIdRule, pixelIdItem)
+	}
+	var ownerRule []interface{}
+	for _, ownerItem := range owner {
+		ownerRule = append(ownerRule, ownerItem)
+	}
+
+	logs, sub, err := _Contract.contract.WatchLogs(opts, "UpdateContentData", pixelIdRule, ownerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(ContractUpdateContentData)
+				if err := _Contract.contract.UnpackLog(event, "UpdateContentData", log); err != nil {
 					return err
 				}
 				event.Raw = log
