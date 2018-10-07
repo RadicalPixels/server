@@ -111,6 +111,7 @@ func (s *Server) Start() {
 				handleError(w, err)
 				return
 			}
+			return
 		}
 
 		x, y, err := s.client.GridSize()
