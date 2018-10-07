@@ -26,3 +26,24 @@ func TestClient(t *testing.T) {
 
 	spew.Dump(events)
 }
+
+func TestGridSize(t *testing.T) {
+	cl := NewClient(&Config{
+		HostURL: "https://kovan.infura.io",
+		Address: "0x6d382af479cc7d5f3337e7224261f6e289fddeb1",
+	})
+
+	x, y, err := cl.GridSize()
+	if err != nil {
+		t.Error(err)
+	}
+
+	if x == 0 {
+		t.Error("expected greater than 0")
+	}
+	if y == 0 {
+		t.Error("expected greater than 0")
+	}
+
+	t.Log(x, y)
+}

@@ -36,7 +36,7 @@ test/ipfsutil:
 
 .PHONY: test/client
 test/client:
-	@go test -v radpixclient/*.go
+	@go test -v radpixclient/*.go $(ARGS)
 
 .PHONY: clean
 clean:

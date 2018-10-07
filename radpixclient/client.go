@@ -9,6 +9,7 @@ import (
 	contract "github.com/RadicalPixels/server/contract"
 	ethereum "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -150,6 +151,24 @@ func (s *Client) Query(cfg *QueryConfig) ([]interface{}, error) {
 	}
 
 	return eventLogs, nil
+}
+
+// GridSize ...
+func (s *Client) GridSize() (int, int, error) {
+	caller, err := contract.NewContractCaller(s.address, s.client)
+	if err != nil {
+		return 0, 0, err
+	}
+	xMax, err := caller.XMax(&bind.CallOpts{})
+	if err != nil {
+		return 0, 0, err
+	}
+	yMax, err := caller.XMax(&bind.CallOpts{})
+	if err != nil {
+		return 0, 0, err
+	}
+
+	return int(xMax.Uint64()), int(yMax.Uint64()), nil
 }
 
 // LogTopicHash ...

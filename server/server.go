@@ -15,16 +15,25 @@ import (
 
 // Pixel ...
 type Pixel struct {
-	ID     string   `json:"ID"`
-	X      int64    `json:"x"`
-	Y      int64    `json:"y"`
-	Owner  string   `json:"owner"`
-	Price  float64  `json:"price"`
-	Colors []string `json:"colors"`
+	ID       string   `json:"ID"`
+	X        int64    `json:"x"`
+	Y        int64    `json:"y"`
+	Owner    string   `json:"owner"`
+	Price    float64  `json:"price"`
+	Colors   []string `json:"colors"`
+	Sellable bool     `json:"sellable"`
 }
 
 // Run ...
 func Run() {
+	hostURL := "https://kovan.infura.io"
+	address := "0x6d382af479cc7d5f3337e7224261f6e289fddeb1"
+
+	client := radpixclient.NewClient(&radpixclient.Config{
+		HostURL: hostURL,
+		Address: address,
+	})
+
 	http.HandleFunc("/upload", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("received request")
 		file, _, err := r.FormFile("file")
@@ -62,38 +71,52 @@ func Run() {
 
 	http.HandleFunc("/grid", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("received request")
-		client := radpixclient.NewClient(&radpixclient.Config{
-			HostURL: "https://rinkeby.infura.io",
-			Address: "",
-		})
+		x, y, err := client.GridSize()
+		if err != nil {
+			handleError(w, err)
+			return
+		}
+
+		var pixels []*Pixel
+		for i := 0; i < x; i++ {
+			for j := 0; j < y; j++ {
+				pixels = append(pixels, &Pixel{})
+			}
+		}
 
 		events, err := client.Query(&radpixclient.QueryConfig{
 			LogTopics: [][]common.Hash{
 				[]common.Hash{radpixclient.LogBuyPixelTopic},
 			},
 		})
-
 		if err != nil {
 			handleError(w, err)
+			return
 		}
 
 		spew.Dump(events)
 
-		var pixels []*Pixel
 		for _, event := range events {
 			var colors []string
 			p, ok := event.(radpixclient.LogBuyPixel)
 			if !ok {
-				log.Fatal("no ok")
+				handleError(w, errors.New("could not typecast"))
+				return
 			}
-			pixels = append(pixels, &Pixel{
-				ID:     string(p.ID[:]),
-				X:      p.X.Int64(),
-				Y:      p.Y.Int64(),
-				Owner:  string(p.Buyer[:]),
-				Price:  float64(10),
-				Colors: colors,
-			})
+
+			pixel := &Pixel{
+				ID:       string(p.ID[:]),
+				X:        p.X.Int64(),
+				Y:        p.Y.Int64(),
+				Owner:    string(p.Buyer[:]),
+				Price:    float64(p.Price.Uint64()),
+				Colors:   colors,
+				Sellable: true,
+			}
+
+			index := pixel.X * pixel.Y
+
+			pixels[index] = pixel
 		}
 
 		jsonBytes, err := json.Marshal(pixels)
