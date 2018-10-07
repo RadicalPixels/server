@@ -16,7 +16,7 @@ func ParseContinuousColorHexString(colorStr string) []string {
 			if x > size {
 				break
 			}
-			colors = append(colors, string(slice[i:x]))
+			colors = append(colors, "#"+string(slice[i:x]))
 		}
 	}
 

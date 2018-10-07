@@ -9,13 +9,13 @@ func TestParseContinuousColorHexString(t *testing.T) {
 	if len(colors) != 9 {
 		t.Error("expected size 6")
 	}
-	if colors[0] != "111111" {
+	if colors[0] != "#111111" {
 		t.Error("expected match")
 	}
-	if colors[1] != "222222" {
+	if colors[1] != "#222222" {
 		t.Error("expected match")
 	}
-	if colors[8] != "999999" {
+	if colors[8] != "#999999" {
 		t.Error("expected match")
 	}
 }
