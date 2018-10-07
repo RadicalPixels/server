@@ -140,10 +140,8 @@ func (s *Server) Start() {
 
 			x := p.X.Int64()
 			y := p.Y.Int64()
-			index := int64(x + y)
 
 			pixel := &Pixel{}
-			pixel.Index = index
 			pixel.X = x
 			pixel.Y = y
 			pixel.ID = hex.EncodeToString(p.ID[:])
@@ -151,9 +149,6 @@ func (s *Server) Start() {
 			price, _ := util.ToDecimal(p.Price, 18).Float64()
 			pixel.Price = price
 			//if p.ContentData[:] != nil {
-			if pixel.Index == 16 {
-				fmt.Println(pixel.Index)
-			}
 			empty := [32]byte{}
 			if !bytes.Equal(empty[:], p.ContentData[:]) {
 				pixel.Content = hex.EncodeToString(p.ContentData[:])
@@ -162,23 +157,34 @@ func (s *Server) Start() {
 				pixel.Colors = util.ParseContinuousColorHexString(pixel.Content)
 			}
 			pixel.Sellable = true
-			pixelsMap[fmt.Sprintf("%d", index)] = pixel
+			pixelsMap[fmt.Sprintf("%d,%d", x, y)] = pixel
 		}
 
-		var pixels []*Pixel
+		var pixels []Pixel
+		index := 0
 		for i := 0; i < x; i++ {
 			for j := 0; j < y; j++ {
-				index := int64(i + j)
-				pix, ok := pixelsMap[fmt.Sprintf("%d", index)]
+				pix, ok := pixelsMap[fmt.Sprintf("%d,%d", i, j)]
 				if ok {
-					pixels = append(pixels, pix)
+					pixels = append(pixels, Pixel{
+						Index:    int64(index),
+						X:        int64(i),
+						Y:        int64(j),
+						ID:       pix.ID,
+						Owner:    pix.Owner,
+						Price:    pix.Price,
+						Content:  pix.Content,
+						Colors:   pix.Colors,
+						Sellable: pix.Sellable,
+					})
 				} else {
-					pixels = append(pixels, &Pixel{
+					pixels = append(pixels, Pixel{
 						Index: int64(index),
 						X:     int64(i),
 						Y:     int64(j),
 					})
 				}
+				index++
 			}
 		}
 
@@ -228,7 +234,7 @@ func (s *Server) Start() {
 		}
 	})
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/index", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("index")
 	})
 
