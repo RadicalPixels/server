@@ -10,7 +10,7 @@ RUN ipfs init
 RUN ipfs key gen default --type=rsa --size=2048
 
 RUN go get github.com/ethereum/go-ethereum
-RUN rm /go/src/github.com/RadicalPixels/server/vendor
+RUN rm -rf /go/src/github.com/RadicalPixels/server/vendor
 COPY . /go/src/github.com/RadicalPixels/server
 
 ENTRYPOINT make start
