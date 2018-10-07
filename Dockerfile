@@ -9,6 +9,7 @@ RUN set -x && wget https://dist.ipfs.io/go-ipfs/v0.4.14/go-ipfs_v0.4.14_linux-am
 RUN ipfs init
 RUN ipfs key gen default --type=rsa --size=2048
 
+#RUN go get github.com/ethereum/go-ethereum
 COPY . /go/src/github.com/RadicalPixels/server
 
 ENTRYPOINT make start

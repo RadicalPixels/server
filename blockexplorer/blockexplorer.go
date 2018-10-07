@@ -1,8 +1,6 @@
 package blockexplorer
 
-import (
-	_ "github.com/lib/pq" // required
-)
+//_ "github.com/lib/pq" // required
 
 // Config ...
 type Config struct {
