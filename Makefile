@@ -26,12 +26,16 @@ test/upload:
 test/grid:
 	@curl -X GET "http://localhost:8000/grid"
 
+.PHONY: test/colors
+test/colors:
+	@curl -X POST "http://localhost:8000/content" -H 'Content-Type: application/json' -d '["#fff","#000"]'
+
 .PHONY: test/ipfsutil
 test/ipfsutil:
 	@go test -v ipfsutil/*.go
 
-.PHONY: test/radpixclient
-test/radpixclient:
+.PHONY: test/client
+test/client:
 	@go test -v radpixclient/*.go
 
 .PHONY: clean

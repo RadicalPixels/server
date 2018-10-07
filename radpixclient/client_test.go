@@ -9,8 +9,9 @@ import (
 
 func TestClient(t *testing.T) {
 	cl := NewClient(&Config{
+		//HostURL: "http://localhost:8545",
 		HostURL: "https://rinkeby.infura.io",
-		Address: "0x0000000000000000000000000000000000000001",
+		Address: "0x6d382af479cc7d5f3337e7224261f6e289fddeb1",
 	})
 
 	events, err := cl.Query(&QueryConfig{

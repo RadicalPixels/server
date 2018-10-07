@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -96,6 +97,42 @@ func Run() {
 		}
 
 		jsonBytes, err := json.Marshal(pixels)
+		w.Header().Set("Content-Type", "application/json")
+		if _, err = w.Write(jsonBytes); err != nil {
+			handleError(w, err)
+		}
+	})
+
+	http.HandleFunc("/content", func(w http.ResponseWriter, r *http.Request) {
+		decoder := json.NewDecoder(r.Body)
+		var colors []string
+		if err := decoder.Decode(&colors); err != nil {
+			handleError(w, err)
+			return
+		}
+
+		if len(colors) == 0 {
+			err := errors.New("expected more than 0")
+			handleError(w, err)
+			return
+		}
+
+		contentBytes, err := json.Marshal(colors)
+		hash, err := ipfsutil.Add(contentBytes)
+		if err != nil {
+			handleError(w, err)
+			return
+		}
+
+		resp := struct {
+			//IPNS string `json:"ipns"`
+			Hash string `json:"hash"`
+		}{
+			//IPNS: "",
+			Hash: fmt.Sprintf("/ipfs/%s", hash),
+		}
+
+		jsonBytes, err := json.Marshal(resp)
 		w.Header().Set("Content-Type", "application/json")
 		if _, err = w.Write(jsonBytes); err != nil {
 			handleError(w, err)
