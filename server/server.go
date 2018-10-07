@@ -165,12 +165,14 @@ func (s *Server) Start() {
 
 // getPixels ...
 func (s *Server) getPixels() ([]Pixel, error) {
-	grid, found := s.cache.Get("grid")
-	if found {
-		fmt.Println("cached")
-		pixels := grid.([]Pixel)
-		return pixels, nil
-	}
+	/*
+		grid, found := s.cache.Get("grid")
+		if found {
+			fmt.Println("cached")
+			pixels := grid.([]Pixel)
+			return pixels, nil
+		}
+	*/
 
 	x, y, err := s.client.GridSize()
 	if err != nil {
@@ -203,6 +205,7 @@ func (s *Server) getPixels() ([]Pixel, error) {
 		pixel.Owner = "0x" + hex.EncodeToString(p.Buyer[:])
 		price, _ := util.ToDecimal(p.Price, 18).Float64()
 		pixel.Price = price
+
 		//if p.ContentData[:] != nil {
 		empty := [32]byte{}
 		if !bytes.Equal(empty[:], p.ContentData[:]) {
