@@ -25,7 +25,7 @@ func TestClient(t *testing.T) {
 func TestQuery(t *testing.T) {
 	cl := NewClient(&Config{
 		HostURL: "https://kovan.infura.io",
-		Address: "0x6d382af479cc7d5f3337e7224261f6e289fddeb1",
+		Address: "0xa74e7fea1db19f0f41d054854f4d950f1c6ff513",
 	})
 
 	events, err := cl.Query(&QueryConfig{

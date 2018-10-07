@@ -140,7 +140,7 @@ func (s *Client) Query(cfg *QueryConfig) ([]interface{}, error) {
 	for _, vLog := range logs {
 		switch vLog.Topics[0].Hex() {
 		case LogBuyPixelTopic.Hex():
-			event := &LogBuyPixel{}
+			var event LogBuyPixel
 			err := contractAbi.Unpack(&event, "BuyPixel", vLog.Data)
 			if err != nil {
 				log.Fatal(err)

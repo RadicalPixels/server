@@ -1,6 +1,7 @@
 package server
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -9,12 +10,12 @@ import (
 
 	ipfsutil "github.com/RadicalPixels/server/ipfsutil"
 	radpixclient "github.com/RadicalPixels/server/radpixclient"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/ethereum/go-ethereum/common"
 )
 
 // Pixel ...
 type Pixel struct {
+	Index    int64    `json:"Index"`
 	ID       string   `json:"ID"`
 	X        int64    `json:"x"`
 	Y        int64    `json:"y"`
@@ -27,7 +28,7 @@ type Pixel struct {
 // Run ...
 func Run() {
 	hostURL := "https://kovan.infura.io"
-	address := "0x6d382af479cc7d5f3337e7224261f6e289fddeb1"
+	address := "0xa74e7fea1db19f0f41d054854f4d950f1c6ff513"
 
 	client := radpixclient.NewClient(&radpixclient.Config{
 		HostURL: hostURL,
@@ -81,13 +82,6 @@ func Run() {
 			return
 		}
 
-		var pixels []*Pixel
-		for i := 0; i < x; i++ {
-			for j := 0; j < y; j++ {
-				pixels = append(pixels, &Pixel{})
-			}
-		}
-
 		events, err := client.Query(&radpixclient.QueryConfig{
 			LogTopics: [][]common.Hash{
 				[]common.Hash{radpixclient.LogBuyPixelTopic},
@@ -98,8 +92,7 @@ func Run() {
 			return
 		}
 
-		spew.Dump(events)
-
+		pixelsMap := make(map[string]*Pixel)
 		for _, event := range events {
 			var colors []string
 			p, ok := event.(radpixclient.LogBuyPixel)
@@ -108,19 +101,37 @@ func Run() {
 				return
 			}
 
-			pixel := &Pixel{
-				ID:       string(p.ID[:]),
-				X:        p.X.Int64(),
-				Y:        p.Y.Int64(),
-				Owner:    string(p.Buyer[:]),
-				Price:    float64(p.Price.Uint64()),
-				Colors:   colors,
-				Sellable: true,
+			x := p.X.Int64()
+			y := p.Y.Int64()
+			index := int64(x + y)
+
+			pixel := &Pixel{}
+			pixel.Index = index
+			pixel.X = x
+			pixel.Y = y
+			pixel.ID = hex.EncodeToString(p.ID[:])
+			pixel.Owner = hex.EncodeToString(p.Buyer[:])
+			pixel.Price = float64(p.Price.Uint64())
+			pixel.Colors = colors
+			pixel.Sellable = true
+			pixelsMap[fmt.Sprintf("%d", index)] = pixel
+		}
+
+		var pixels []*Pixel
+		for i := 0; i < x; i++ {
+			for j := 0; j < y; j++ {
+				index := int64(i + j)
+				pix, ok := pixelsMap[fmt.Sprintf("%d", index)]
+				if ok {
+					pixels = append(pixels, pix)
+				} else {
+					pixels = append(pixels, &Pixel{
+						Index: int64(index),
+						X:     int64(i),
+						Y:     int64(j),
+					})
+				}
 			}
-
-			index := pixel.X * pixel.Y
-
-			pixels[index] = pixel
 		}
 
 		jsonBytes, err := json.Marshal(pixels)
