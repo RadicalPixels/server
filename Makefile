@@ -15,7 +15,7 @@ start:
 
 .PHONY: start/docker
 start/docker:
-	@docker run -p 8000:8000 -t radpix:latest
+	@docker run -p 8000:8000 -t radpix:latest $(ARGS)
 
 .PHONY: test/upload
 test/upload:
