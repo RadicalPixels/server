@@ -204,7 +204,6 @@ func (s *Server) getPixels() ([]Pixel, error) {
 		price, _ := util.ToDecimal(p.Price, 18).Float64()
 		pixel.Price = price
 
-		//if p.ContentData[:] != nil {
 		empty := [32]byte{}
 		if !bytes.Equal(empty[:], p.ContentData[:]) {
 			pixel.Content = hex.EncodeToString(p.ContentData[:])

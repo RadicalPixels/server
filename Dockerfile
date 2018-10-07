@@ -13,7 +13,8 @@ RUN ipfs key gen default --type=rsa --size=2048
 RUN go get github.com/ethereum/go-ethereum
 RUN go get github.com/patrickmn/go-cache
 RUN go get github.com/shopspring/decimal
+RUN go get github.com/spf13/cobra
 RUN rm -rf /go/src/github.com/RadicalPixels/server/vendor
 COPY . /go/src/github.com/RadicalPixels/server
 
-ENTRYPOINT make start
+ENTRYPOINT ./entrypoint.sh

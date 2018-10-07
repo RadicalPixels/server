@@ -11,7 +11,7 @@ build/contract:
 
 .PHONY: start
 start:
-	@go run main.go
+	@go run main.go start --node-url $(URL) --address $(ADDRESS)
 
 .PHONY: start/docker
 start/docker:
