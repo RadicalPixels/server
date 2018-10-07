@@ -38,7 +38,8 @@ func NewClient(cfg *Config) *Client {
 	return &Client{
 		client:     client,
 		address:    common.HexToAddress(cfg.Address),
-		startBlock: big.NewInt(3116194),
+		startBlock: big.NewInt(8989021),
+		//3116194
 	}
 }
 
@@ -110,12 +111,15 @@ var LogBuyPixelTopic common.Hash
 func (s *Client) Query(cfg *QueryConfig) ([]interface{}, error) {
 	header, err := s.client.HeaderByNumber(context.Background(), nil)
 	if err != nil {
-		return nil, err
+		if err.Error() != "missing required field 'mixHash' for Header" {
+			return nil, err
+		}
 	}
 
 	query := ethereum.FilterQuery{
 		FromBlock: s.startBlock,
 		ToBlock:   header.Number,
+		//ToBlock: new(big.Int).Add(s.startBlock, big.NewInt(1000000)),
 		Addresses: []common.Address{
 			s.address,
 		},

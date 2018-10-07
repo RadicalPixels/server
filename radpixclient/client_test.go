@@ -1,6 +1,7 @@
 package radpixclient
 
 import (
+	"context"
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
@@ -9,8 +10,21 @@ import (
 
 func TestClient(t *testing.T) {
 	cl := NewClient(&Config{
-		//HostURL: "http://localhost:8545",
-		HostURL: "https://rinkeby.infura.io",
+		HostURL: "https://kovan.infura.io",
+		Address: "0x6d382af479cc7d5f3337e7224261f6e289fddeb1",
+	})
+
+	header, err := cl.client.HeaderByNumber(context.Background(), nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Log(header.Number)
+}
+
+func TestQuery(t *testing.T) {
+	cl := NewClient(&Config{
+		HostURL: "https://kovan.infura.io",
 		Address: "0x6d382af479cc7d5f3337e7224261f6e289fddeb1",
 	})
 

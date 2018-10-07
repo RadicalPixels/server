@@ -39,18 +39,21 @@ func Run() {
 		file, _, err := r.FormFile("file")
 		if err != nil {
 			handleError(w, err)
+			return
 		}
 		defer file.Close()
 
 		hash, err := ipfsutil.Add(file)
 		if err != nil {
 			handleError(w, err)
+			return
 		}
 
 		fmt.Printf("hash: %s\n", hash)
 		ipns, err := ipfsutil.Publish(hash)
 		if err != nil {
 			handleError(w, err)
+			return
 		}
 
 		resp := struct {
@@ -66,6 +69,7 @@ func Run() {
 		w.Header().Set("Content-Type", "application/json")
 		if _, err = w.Write(jsonBytes); err != nil {
 			handleError(w, err)
+			return
 		}
 	})
 
@@ -159,6 +163,7 @@ func Run() {
 		w.Header().Set("Content-Type", "application/json")
 		if _, err = w.Write(jsonBytes); err != nil {
 			handleError(w, err)
+			return
 		}
 	})
 
