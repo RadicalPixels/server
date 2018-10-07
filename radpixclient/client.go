@@ -45,13 +45,13 @@ func NewClient(cfg *Config) *Client {
 
 // LogBuyPixel ...
 type LogBuyPixel struct {
-	ID           [32]byte
-	Seller       common.Address
-	Buyer        common.Address
-	X            *big.Int
-	Y            *big.Int
-	Price        *big.Int
-	ContractData [32]byte
+	ID          [32]byte
+	Seller      common.Address
+	Buyer       common.Address
+	X           *big.Int
+	Y           *big.Int
+	Price       *big.Int
+	ContentData [32]byte
 }
 
 // LogSetPixelPrice ...

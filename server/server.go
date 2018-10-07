@@ -1,6 +1,7 @@
 package server
 
 import (
+	"bytes"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
@@ -11,6 +12,7 @@ import (
 
 	ipfsutil "github.com/RadicalPixels/server/ipfsutil"
 	radpixclient "github.com/RadicalPixels/server/radpixclient"
+	util "github.com/RadicalPixels/server/util"
 	"github.com/ethereum/go-ethereum/common"
 	gocache "github.com/patrickmn/go-cache"
 )
@@ -23,6 +25,7 @@ type Pixel struct {
 	Y        int64    `json:"y"`
 	Owner    string   `json:"owner"`
 	Price    float64  `json:"price"`
+	Content  string   `json:"content"`
 	Colors   []string `json:"colors"`
 	Sellable bool     `json:"sellable"`
 }
@@ -100,6 +103,7 @@ func (s *Server) Start() {
 
 		grid, found := s.cache.Get("grid")
 		if found {
+			fmt.Println("cached")
 			pixels := grid.([]*Pixel)
 			jsonBytes, err := json.Marshal(pixels)
 			w.Header().Set("Content-Type", "application/json")
@@ -127,7 +131,6 @@ func (s *Server) Start() {
 
 		pixelsMap := make(map[string]*Pixel)
 		for _, event := range events {
-			var colors []string
 			p, ok := event.(radpixclient.LogBuyPixel)
 			if !ok {
 				handleError(w, errors.New("could not typecast"))
@@ -143,9 +146,19 @@ func (s *Server) Start() {
 			pixel.X = x
 			pixel.Y = y
 			pixel.ID = hex.EncodeToString(p.ID[:])
-			pixel.Owner = hex.EncodeToString(p.Buyer[:])
+			pixel.Owner = "0x" + hex.EncodeToString(p.Buyer[:])
 			pixel.Price = float64(p.Price.Uint64())
-			pixel.Colors = colors
+			//if p.ContentData[:] != nil {
+			if pixel.Index == 16 {
+				fmt.Println(pixel.Index)
+			}
+			empty := [32]byte{}
+			if !bytes.Equal(empty[:], p.ContentData[:]) {
+				pixel.Content = hex.EncodeToString(p.ContentData[:])
+			}
+			if pixel.Content != "" {
+				pixel.Colors = util.ParseContinuousColorHexString(pixel.Content)
+			}
 			pixel.Sellable = true
 			pixelsMap[fmt.Sprintf("%d", index)] = pixel
 		}

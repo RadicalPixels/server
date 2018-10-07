@@ -41,3 +41,7 @@ test/client:
 .PHONY: clean
 clean:
 	@rm data.txt
+
+.PHONY: kill
+kill:
+	@docker rm -f $(docker ps -aq)
