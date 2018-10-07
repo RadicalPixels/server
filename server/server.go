@@ -7,16 +7,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	ipfsutil "github.com/RadicalPixels/server/ipfsutil"
 	radpixclient "github.com/RadicalPixels/server/radpixclient"
 	"github.com/ethereum/go-ethereum/common"
+	gocache "github.com/patrickmn/go-cache"
 )
 
 // Pixel ...
 type Pixel struct {
-	Index    int64    `json:"Index"`
-	ID       string   `json:"ID"`
+	Index    int64    `json:"index"`
+	ID       string   `json:"id"`
 	X        int64    `json:"x"`
 	Y        int64    `json:"y"`
 	Owner    string   `json:"owner"`
@@ -25,16 +27,35 @@ type Pixel struct {
 	Sellable bool     `json:"sellable"`
 }
 
-// Run ...
-func Run() {
-	hostURL := "https://kovan.infura.io"
-	address := "0xa74e7fea1db19f0f41d054854f4d950f1c6ff513"
+// Server ...
+type Server struct {
+	cache  *gocache.Cache
+	client *radpixclient.Client
+}
+
+// Config ...
+type Config struct {
+	NodeURL         string
+	ContractAddress string
+}
+
+// NewServer ...
+func NewServer(cfg *Config) *Server {
+	cache := gocache.New(5*time.Minute, 10*time.Minute)
 
 	client := radpixclient.NewClient(&radpixclient.Config{
-		HostURL: hostURL,
-		Address: address,
+		HostURL: cfg.NodeURL,
+		Address: cfg.ContractAddress,
 	})
 
+	return &Server{
+		cache:  cache,
+		client: client,
+	}
+}
+
+// Start ...
+func (s *Server) Start() {
 	http.HandleFunc("/upload", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("received request")
 		file, _, err := r.FormFile("file")
@@ -76,13 +97,25 @@ func Run() {
 
 	http.HandleFunc("/grid", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("received request")
-		x, y, err := client.GridSize()
+
+		grid, found := s.cache.Get("grid")
+		if found {
+			pixels := grid.([]*Pixel)
+			jsonBytes, err := json.Marshal(pixels)
+			w.Header().Set("Content-Type", "application/json")
+			if _, err = w.Write(jsonBytes); err != nil {
+				handleError(w, err)
+				return
+			}
+		}
+
+		x, y, err := s.client.GridSize()
 		if err != nil {
 			handleError(w, err)
 			return
 		}
 
-		events, err := client.Query(&radpixclient.QueryConfig{
+		events, err := s.client.Query(&radpixclient.QueryConfig{
 			LogTopics: [][]common.Hash{
 				[]common.Hash{radpixclient.LogBuyPixelTopic},
 			},
@@ -133,6 +166,8 @@ func Run() {
 				}
 			}
 		}
+
+		s.cache.Set("grid", pixels, gocache.DefaultExpiration)
 
 		jsonBytes, err := json.Marshal(pixels)
 		w.Header().Set("Content-Type", "application/json")
