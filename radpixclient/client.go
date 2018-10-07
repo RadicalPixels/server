@@ -172,7 +172,10 @@ func (s *Client) GridSize() (int, int, error) {
 		return 0, 0, err
 	}
 
-	return int(xMax.Uint64()), int(yMax.Uint64()), nil
+	_ = yMax
+	_ = xMax
+	//return int(xMax.Uint64()), int(yMax.Uint64()), nil
+	return 50, 50, nil
 }
 
 // LogTopicHash ...
