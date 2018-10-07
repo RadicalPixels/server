@@ -44,7 +44,7 @@ type Config struct {
 
 // NewServer ...
 func NewServer(cfg *Config) *Server {
-	cache := gocache.New(5*time.Minute, 10*time.Minute)
+	cache := gocache.New(5*time.Minute, 5*time.Minute)
 
 	client := radpixclient.NewClient(&radpixclient.Config{
 		HostURL: cfg.NodeURL,
@@ -101,94 +101,11 @@ func (s *Server) Start() {
 	http.HandleFunc("/grid", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("received request")
 
-		grid, found := s.cache.Get("grid")
-		if found {
-			fmt.Println("cached")
-			pixels := grid.([]*Pixel)
-			jsonBytes, err := json.Marshal(pixels)
-			w.Header().Set("Content-Type", "application/json")
-			if _, err = w.Write(jsonBytes); err != nil {
-				handleError(w, err)
-				return
-			}
-			return
-		}
-
-		x, y, err := s.client.GridSize()
+		pixels, err := s.getPixels()
 		if err != nil {
 			handleError(w, err)
 			return
 		}
-
-		events, err := s.client.Query(&radpixclient.QueryConfig{
-			LogTopics: [][]common.Hash{
-				[]common.Hash{radpixclient.LogBuyPixelTopic},
-			},
-		})
-		if err != nil {
-			handleError(w, err)
-			return
-		}
-
-		pixelsMap := make(map[string]*Pixel)
-		for _, event := range events {
-			p, ok := event.(radpixclient.LogBuyPixel)
-			if !ok {
-				handleError(w, errors.New("could not typecast"))
-				return
-			}
-
-			x := p.X.Int64()
-			y := p.Y.Int64()
-
-			pixel := &Pixel{}
-			pixel.X = x
-			pixel.Y = y
-			pixel.ID = hex.EncodeToString(p.ID[:])
-			pixel.Owner = "0x" + hex.EncodeToString(p.Buyer[:])
-			price, _ := util.ToDecimal(p.Price, 18).Float64()
-			pixel.Price = price
-			//if p.ContentData[:] != nil {
-			empty := [32]byte{}
-			if !bytes.Equal(empty[:], p.ContentData[:]) {
-				pixel.Content = hex.EncodeToString(p.ContentData[:])
-			}
-			if pixel.Content != "" {
-				pixel.Colors = util.ParseContinuousColorHexString(pixel.Content)
-			}
-			pixel.Sellable = true
-			pixelsMap[fmt.Sprintf("%d,%d", x, y)] = pixel
-		}
-
-		var pixels []Pixel
-		index := 0
-		for i := 0; i < x; i++ {
-			for j := 0; j < y; j++ {
-				pix, ok := pixelsMap[fmt.Sprintf("%d,%d", i, j)]
-				if ok {
-					pixels = append(pixels, Pixel{
-						Index:    int64(index),
-						X:        int64(i),
-						Y:        int64(j),
-						ID:       pix.ID,
-						Owner:    pix.Owner,
-						Price:    pix.Price,
-						Content:  pix.Content,
-						Colors:   pix.Colors,
-						Sellable: pix.Sellable,
-					})
-				} else {
-					pixels = append(pixels, Pixel{
-						Index: int64(index),
-						X:     int64(i),
-						Y:     int64(j),
-					})
-				}
-				index++
-			}
-		}
-
-		s.cache.Set("grid", pixels, gocache.DefaultExpiration)
 
 		jsonBytes, err := json.Marshal(pixels)
 		w.Header().Set("Content-Type", "application/json")
@@ -241,6 +158,90 @@ func (s *Server) Start() {
 	port := 8000
 	log.Printf("listening on port %d", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf("0.0.0.0:%d", port), nil))
+}
+
+// getPixels ...
+func (s *Server) getPixels() ([]Pixel, error) {
+	grid, found := s.cache.Get("grid")
+	if found {
+		fmt.Println("cached")
+		pixels := grid.([]Pixel)
+		return pixels, nil
+	}
+
+	x, y, err := s.client.GridSize()
+	if err != nil {
+		return nil, err
+	}
+
+	events, err := s.client.Query(&radpixclient.QueryConfig{
+		LogTopics: [][]common.Hash{
+			[]common.Hash{radpixclient.LogBuyPixelTopic},
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	pixelsMap := make(map[string]*Pixel)
+	for _, event := range events {
+		p, ok := event.(radpixclient.LogBuyPixel)
+		if !ok {
+			return nil, errors.New("could not typecast")
+		}
+
+		x := p.X.Int64()
+		y := p.Y.Int64()
+
+		pixel := &Pixel{}
+		pixel.X = x
+		pixel.Y = y
+		pixel.ID = hex.EncodeToString(p.ID[:])
+		pixel.Owner = "0x" + hex.EncodeToString(p.Buyer[:])
+		price, _ := util.ToDecimal(p.Price, 18).Float64()
+		pixel.Price = price
+		//if p.ContentData[:] != nil {
+		empty := [32]byte{}
+		if !bytes.Equal(empty[:], p.ContentData[:]) {
+			pixel.Content = hex.EncodeToString(p.ContentData[:])
+		}
+		if pixel.Content != "" {
+			pixel.Colors = util.ParseContinuousColorHexString(pixel.Content)
+		}
+		pixel.Sellable = true
+		pixelsMap[fmt.Sprintf("%d,%d", x, y)] = pixel
+	}
+
+	var pixels []Pixel
+	index := 0
+	for i := 0; i < x; i++ {
+		for j := 0; j < y; j++ {
+			pix, ok := pixelsMap[fmt.Sprintf("%d,%d", i, j)]
+			if ok {
+				pixels = append(pixels, Pixel{
+					Index:    int64(index),
+					X:        int64(i),
+					Y:        int64(j),
+					ID:       pix.ID,
+					Owner:    pix.Owner,
+					Price:    pix.Price,
+					Content:  pix.Content,
+					Colors:   pix.Colors,
+					Sellable: pix.Sellable,
+				})
+			} else {
+				pixels = append(pixels, Pixel{
+					Index: int64(index),
+					X:     int64(i),
+					Y:     int64(j),
+				})
+			}
+			index++
+		}
+	}
+
+	s.cache.Set("grid", pixels, 30*time.Second)
+	return pixels, nil
 }
 
 func handleError(w http.ResponseWriter, err error) {
