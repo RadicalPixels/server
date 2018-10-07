@@ -165,14 +165,12 @@ func (s *Server) Start() {
 
 // getPixels ...
 func (s *Server) getPixels() ([]Pixel, error) {
-	/*
-		grid, found := s.cache.Get("grid")
-		if found {
-			fmt.Println("cached")
-			pixels := grid.([]Pixel)
-			return pixels, nil
-		}
-	*/
+	grid, found := s.cache.Get("grid")
+	if found {
+		fmt.Println("cached")
+		pixels := grid.([]Pixel)
+		return pixels, nil
+	}
 
 	x, y, err := s.client.GridSize()
 	if err != nil {
@@ -246,7 +244,7 @@ func (s *Server) getPixels() ([]Pixel, error) {
 		}
 	}
 
-	s.cache.Set("grid", pixels, 30*time.Second)
+	s.cache.Set("grid", pixels, 15*time.Second)
 	return pixels, nil
 }
 
