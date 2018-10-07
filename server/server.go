@@ -148,7 +148,8 @@ func (s *Server) Start() {
 			pixel.Y = y
 			pixel.ID = hex.EncodeToString(p.ID[:])
 			pixel.Owner = "0x" + hex.EncodeToString(p.Buyer[:])
-			pixel.Price = float64(p.Price.Uint64())
+			price, _ := util.ToDecimal(p.Price, 18).Float64()
+			pixel.Price = price
 			//if p.ContentData[:] != nil {
 			if pixel.Index == 16 {
 				fmt.Println(pixel.Index)
