@@ -101,6 +101,9 @@ func (s *Server) Start() {
 	http.HandleFunc("/grid", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("received request")
 
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 		pixels, err := s.getPixels()
 		if err != nil {
 			handleError(w, err)
